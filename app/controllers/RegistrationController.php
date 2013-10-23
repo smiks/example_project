@@ -13,7 +13,8 @@ class RegistrationController extends BaseController
         $rules = array(
             'username' => 'required|alpha_num|min:3|max:32',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:3'
+            'password' => 'required|confirmed|min:3',
+			'password_confirmation' => 'same:password'
         );
 
         $validator = Validator::make($data, $rules);
