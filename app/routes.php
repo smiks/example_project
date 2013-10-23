@@ -77,7 +77,7 @@ var_dump(Input::old());
 Route::get('/nom-nom', function()
 {
 	$cookie = Cookie::make('low-carb', 'almond cookie', 1);
-	return Redirect::to('new/request')->withCookie($cookie);
+	return Redirect::to('nom-nom2')->withCookie($cookie);
 });
 Route::get('/nom-nom2', function()
 {
