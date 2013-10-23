@@ -39,11 +39,55 @@ Route::get('second',function()
 {
     return 'Second route.';
 });
-
+Route::get('third',function()
+{
+    return Redirect::to('fourth');
+});
+Route::get('fourth',function()
+{
+    return URL::previous();
+});
 Route::get('current/url', function()
 {
     return URL::current();
 });
+Route::get('uri', function()
+{
+   return URL::to('register');
+});
+Route::get('secure', function()
+{
+   return URL::secure('register');
+});
+Route::get('register2', function()
+{
+   return URL::action('RegistrationController@showRegistrationForm');
+});
+Route::get('/flash', function()
+{
+Input::flash();
+return Redirect::to('new/request');
+});
 
+Route::get('new/request', function()
+{
+var_dump(Input::old());
+});
+
+Route::get('/nom-nom', function()
+{
+	$cookie = Cookie::make('low-carb', 'almond cookie', 1);
+	return Redirect::to('new/request')->withCookie($cookie);
+});
+Route::get('/nom-nom2', function()
+{
+	$cookie = Cookie::get('low-carb');
+	var_dump($cookie);
+});
 Route::get('/register', 'RegistrationController@showRegistrationForm');
 Route::post('/register', 'RegistrationController@processRegistrationForm');
+
+Route::get('{page}', function($page)
+{
+    return View::make('404');
+});
