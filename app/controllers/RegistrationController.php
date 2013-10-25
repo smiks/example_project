@@ -17,7 +17,13 @@ class RegistrationController extends BaseController
 			'password_confirmation' => 'same:password'
         );
 
-        $validator = Validator::make($data, $rules);
+		$messages = array(
+			'min' => 'Custom field value too short',
+			'same' => 'Custom same field message',
+			'username.required' => 'Custom required field (username)'
+		);
+
+        $validator = Validator::make($data, $rules, $messages);
 
         if($validator->passes()) {
             return 'Data was saved.';
